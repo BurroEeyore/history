@@ -1,0 +1,66 @@
+### получаем последние версии всех развертываний
+GET {{base_url}}/process-definition?latestVersion=true&sortBy=key&sortOrder=asc
+Accept: application/json
+Authorization: {{token}}
+
+### получаем все развертывания по ключу
+GET {{base_url}}/process-definition?key=addBlank&sortBy=version&sortOrder=desc
+Accept: application/json
+Authorization: {{token}}
+
+### получаем список процессов по развертыванию
+POST {{base_url}}/history/process-instance
+Accept: application/json
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "processDefinitionId": "addBlank:6:60800e7c-3241-11eb-80b5-4a61dbf4e99e",
+  "finished": true,
+  "sorting": [
+    {
+      "sortBy": "businessKey",
+      "sortOrder": "desc"
+    },
+    {
+      "sortBy": "startTime",
+      "sortOrder": "desc"
+    }
+  ]
+}
+
+### получаем переменные по идентификатору процесса
+POST {{base_url}}/history/variable-instance
+Accept: application/json
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "processInstanceId": "6561778d-54a7-11eb-9cc4-e677dd37ebf1",
+  "sorting": [
+    {
+      "sortBy": "variableName",
+      "sortOrder": "asc"
+    },
+    {
+      "sortBy": "instanceId",
+      "sortOrder": "desc"
+    }
+  ]
+}
+
+### получаем конкретную переменную с сериализацией
+GET {{base_url}}/history/variable-instance/8882ff90-54a7-11eb-9cc4-e677dd37ebf1
+Accept: application/json
+Authorization: {{token}}
+
+### получаем конкретную переменную без сериализации
+GET {{base_url}}/history/variable-instance/8882ff90-54a7-11eb-9cc4-e677dd37ebf1?deserializeValue=false
+Accept: application/json
+Authorization: {{token}}
+
+### получаем историю инцидентов по processInstanceId (можно добавить сортировку по датам)
+GET {{base_url}}/history/incident?processInstanceId=30ae15cb-8e13-11eb-9cce-5a971d2f1156
+Accept: application/json
+Content-Type: application/json
+Authorization: {{token}}
