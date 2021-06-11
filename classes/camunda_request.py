@@ -35,7 +35,10 @@ class CamundaRequest:
             return json.loads(resp.content)
 
     def get_definitions_by_key(self, key):
-        """получаем все развертывания по ключу"""
+        """
+        получаем все развертывания по ключу
+        :param key: ключ развертывания
+        """
         url = '{0}{1}'.format(
             self.base_url,
             'process-definition?key={0}&sortBy=version&sortOrder=desc'.format(key),
@@ -52,7 +55,10 @@ class CamundaRequest:
             return json.loads(resp.content)
 
     def get_processes_by_definition(self, deployment_id):
-        """получаем список ЗАВЕРШЕННЫХ процессов по развертыванию"""
+        """
+        получаем список ЗАВЕРШЕННЫХ процессов по развертыванию
+        :param deployment_id: идентификатор развертывания
+        """
         url = '{0}{1}'.format(
             self.base_url,
             'history/process-instance',
@@ -84,7 +90,10 @@ class CamundaRequest:
             return json.loads(resp.content)
 
     def get_process_variables(self, process_id):
-        """получаем список переменных по идентификатору процесса"""
+        """
+        получаем список переменных по идентификатору процесса
+        :param process_id: идентификатор процесса
+        """
         url = '{0}{1}'.format(
             self.base_url,
             'history/variable-instance',
@@ -115,7 +124,11 @@ class CamundaRequest:
             return json.loads(resp.content)
 
     def get_variable(self, variable_id, deserialize=True):
-        """получаем значение переменной с/без десериализацией"""
+        """
+        получаем значение переменной с/без десериализацией
+        :param variable_id: идентификатор переменной
+        :param deserialize: флаг необходимости десериализации (требуется для объектов)
+        """
         url = '{0}{1}'.format(
             self.base_url,
             'history/variable-instance/{0}?deserializeValue={1}'.format(
@@ -135,7 +148,10 @@ class CamundaRequest:
             return json.loads(resp.content)
 
     def get_incidents_by_process(self, process_id):
-        """получаем историю инцидентов по processInstanceId"""
+        """
+        получаем историю инцидентов по processInstanceId
+        :param process_id: идентификатор процесса
+        """
         url = '{0}{1}'.format(
             self.base_url,
             'history/incident?processInstanceId={0}'.format(process_id)
