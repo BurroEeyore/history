@@ -4,7 +4,7 @@ Accept: application/json
 Authorization: {{token}}
 
 ### получаем все развертывания по ключу
-GET {{base_url}}/process-definition?key=addBlank&sortBy=version&sortOrder=desc
+GET {{base_url}}/process-definition?key=FreeSaleCertificateProcess&sortBy=version&sortOrder=desc
 Accept: application/json
 Authorization: {{token}}
 
@@ -15,7 +15,7 @@ Content-Type: application/json
 Authorization: {{token}}
 
 {
-  "processDefinitionId": "addBlank:6:60800e7c-3241-11eb-80b5-4a61dbf4e99e",
+  "processDefinitionId": "c5370046-a809-11eb-8d89-3e07cce03a65",
   "finished": true,
   "sorting": [
     {
