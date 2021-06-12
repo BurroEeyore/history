@@ -54,6 +54,26 @@ class CamundaRequest:
         else:
             return json.loads(resp.content)
 
+    def get_process_by_key(self, key):
+        """
+        получаем все процессы по бизнес-ключу
+        :param key: бизнес-ключ или его фрагмент
+        """
+        url = '{0}{1}'.format(
+            self.base_url,
+            'process-instance?businessKeyLike={}'.format(key),
+        )
+        headers = {
+            'Accept': 'application/json',
+            'Authorization': get_token(self.env)
+        }
+        resp = requests.get(url=url, headers=headers)
+        if resp.status_code != 200:
+            print('Поиск процесса по бизнес-ключу: код ответа не равен 200!')
+            return []
+        else:
+            return json.loads(resp.content)
+
     def get_processes_by_definition(self, deployment_id):
         """
         получаем список ЗАВЕРШЕННЫХ процессов по развертыванию
